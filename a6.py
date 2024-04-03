@@ -96,7 +96,11 @@ class BayesClassifier:
         print(f"negative? {filename.startswith(self.neg_file_prefix)}")
         tokens = self.tokenize(text)
         print(tokens)
-        self.update_dict(tokens, self.pos_freqs)
+        
+        if filename.startswith(self.pos_file_prefix):
+            self.update_dict(tokens, self.pos_freqs)
+        elif filename.startswith(self.neg_file_prefix):
+            self.update_dict(tokens, self.neg_freqs)
         # for debugging purposes, it might be useful to print out the tokens and their
         # frequencies for both the positive and negative dictionaries
         
@@ -238,7 +242,7 @@ class BayesClassifier:
 
 if __name__ == "__main__":
     # uncomment the below lines once you've implemented `train` & `classify`
-    # b = BayesClassifier()
+    b = BayesClassifier()
     # a_list_of_words = ["I", "really", "like", "this", "movie", ".", "I", "hope", \
     #                    "you", "like", "it", "too"]
     # a_dictionary = {}
